@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
     //     }
 
     // }
-
+    
     public void Attack()
     {
         // manual (without DOTween)
@@ -62,14 +63,14 @@ public class Player : MonoBehaviour
 
     public bool IsAttacking()
     {
-        return DOTween.IsTweening(selectedCharacter.transform);
+        return DOTween.IsTweening(selectedCharacter.transform); 
     }
 
     public void TakeDamage(int damageValue)
     {
         selectedCharacter.ChangeHP(-damageValue);
         var spriteRend = selectedCharacter.GetComponent<SpriteRenderer>();
-        spriteRend.DOColor(Color.red, 0.1f).SetLoops(6, LoopType.Yoyo);
+        spriteRend.DOColor(Color.red, 0.1f).SetLoops(6, LoopType.Yoyo); 
     }
 
     public bool IsDamaging()
@@ -80,13 +81,16 @@ public class Player : MonoBehaviour
 
     public void Remove(Character chara)
     {
-        if(characterList.Contains(chara) == false) {
+        if (characterList.Contains(chara) == false)
+        {
             return;
         }
         selectedCharacter.Button.interactable = false;
         selectedCharacter.gameObject.SetActive(false);
         characterList.Remove(chara);
     }
+
+    
 }
 
 
